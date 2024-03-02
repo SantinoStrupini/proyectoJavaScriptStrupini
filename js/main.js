@@ -1,9 +1,9 @@
 
-let saldo = 100000;
+
 
 // FUNCIONES
 
-function prestamo(saldo){
+/* function prestamo(saldo){
     console.log(saldo);
             
     alert("Tu saldo es insuficiente")
@@ -34,60 +34,125 @@ function prestamo(saldo){
                     alert("Opcion no valida")
                 }
         return saldo
- }    
+ }     */
  
  
- // COMIENZO DE LA GESTION BANCARIA
+ 
+//carrito de compras
 
-alert("Bienvenido al banco.");
+const productos = [
+   {nombre: "1-Remera basica blanca", precio: 10000},
+   {nombre: "2-Remera basica negra", precio: 10000},
+   {nombre: "3-Remera basica gris", precio: 12000},
+   {nombre: "4-Remera basica azul", precio: 14000},
+   {nombre: "5-Remera basica roja", precio: 13000},
+   {nombre: "6-Remera basica beige", precio: 15000}
+];
 
-let claveGuardada="2001";
-let= ingresar=false
-for (let i=2; i >=0; i--){
-    let ingreso =prompt("Ingresa tu clave.");
-    if(claveGuardada== ingreso){
-        alert("Bienvenido al banco. Ya podes operar.");
-        ingresar=true
-        break;
-    }else{
-        alert("Clave incorrecta.");
-    }
-}
+const talles = [
+    {nombre: "XS"},
+    {nombre: "S"},
+    {nombre: "M"},
+    {nombre: "L"},
+    {nombre: "XL"},
+    {nombre: "XXL"}
+]
 
-//MENU DEL BANCO
+const carrito = [];
 
-if (ingresar) {    
-     
 
-    let opcion=prompt("Elegi una de las siguientes opciones: \n1. Saldo \n2. Retiro de dinero. \n3. Deposito.\nPresiona x para finalizar.")
-    while (opcion!="x"){    
-        if(opcion==="1"){
-            alert("Tu saldo es: $" + saldo)
-           
-        }else if(opcion==="2"){
-            let retiro=parseInt(prompt("Ingresa el monto a retirar."));
-            console.log(retiro)
-            
-            
-            if(retiro > saldo){
-            
-            saldo=prestamo(saldo);
-            } 
-
-            saldo= saldo - retiro
-        }else if(opcion==="3"){
-            let deposito=parseInt(prompt("Ingrese el monto a depositar."));
-            saldo=saldo + deposito
-            alert("Deposito exitoso, tu saldo es: $" + saldo);
-        }else{
-            alert("Opcion no disponible.")
+    function carritoDeCompra() {
+        let seleccion= prompt("Bienvenido, desea comprar nuestras remeras basicas?");
+    
+        while(seleccion != "si" && seleccion != "no"){
+            alert("Ingrese si o no")
+            seleccion= prompt("Bienvenido, desea comprar nuestras remeras basicas?");
         }
-        opcion = prompt("Elegí una opción: \n1 - Saldo. \n2 - Retiro de dinero. \n3 - Depósito. \nPresioná X para finalizar.");
+    
+        if(seleccion === "si"){
+            alert("A continuacion le dejamos nuestro stock disponible")
+            let misProductos = productos.map((producto) => producto.nombre + " " + "$" + producto.precio );
+            alert(misProductos.join("\n"))
+        } else if (seleccion === "no"){
+            alert("Gracias por venir")
+            return;
+        }
+    
+        
+    
+        do {
+            let producto= prompt("Ingrese un producto.");
+            let precio = 0;
+            if(producto === "remera basica blanca" || producto === "remera basica negra" || producto === "remera basica gris" || producto === "remera basica azul" || producto === "remera basica roja" || producto === "remera basica beige"){
+                switch(producto){
+                    case "remera basica blanca":
+                        precio=10000;
+                        break;
+                    case "remera basica negra":
+                        precio=10000;
+                        break;
+                    case "remera basica gris":
+                        precio= 12000;
+                        break;
+                    case "remera basica azul":
+                        precio= 14000;
+                        break;
+                    case "remera basica roja": 
+                        precio=13000;
+                        break;
+                    case "remera basica beige":
+                        precio= 15000;
+                        break;
+                    default:
+                        break;
+                }
+                let misTalles = talles.map((talle) => talle.nombre + " ");
+                
+                let talle= prompt("Seleccioneun talle \n" + misTalles.join("\n"));
+                
+                if(talle === "xs" || talle === "s" || talle === "m" || talle === "l" || talle === "xl" || talle === "xxl"){
+                    switch(talle){
+                        case "xs":
+                            talle="xs";
+                            break;
+                        case "s":
+                            talle="s";
+                            break;
+                        case "m":
+                            talle= "m";
+                            break;
+                        case "l":
+                            talle= "l";
+                            break;
+                        case "xl": 
+                            talle="xl";
+                            break;
+                        case "xxl":
+                            talle= "xxl";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
+                let prendas = parseInt(prompt("Cuantas prendas quiere llevar"));
+                carrito.push({producto, talle, prendas, precio});
+            } else {
+                alert("No tenemos ese producto");
+            }
+         
+            seleccion = prompt("Quiere agregar mas productos");
+        } while(seleccion === "si");
+    
+        alert("Gracias por comprar.");
+        carrito.forEach((carritoFinal)=>{
+            alert(`Producto: ${carritoFinal.producto}, Talle: ${carritoFinal.talle}, Prendas: ${carritoFinal.prendas}, Total a pagar: $${carritoFinal.prendas * carritoFinal.precio}`);
+        });
+        const total = carrito.reduce((acc, el)=> acc + el.precio * el.prendas, 0);
+        alert(`Total a pagar: $${total}`)    
     }
-} else {
-    alert("Retendremos tu tarjeta. Comunicate con el Banco");
-}
+    
+carritoDeCompra();
 
 
 
-  
