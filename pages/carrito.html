@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--link bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!--link css-->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+    <aside>
+        <header>
+            <h1 class="logo">Basicas nahue</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a class="boton-volver" href="../index.html"><i class="bi bi-arrow-90deg-left"></i> Seguir comprando</a></li>
+                <li><a class="boton-carrito" href="#"> <i class="bi bi-cart4"></i> Carrito</a></li>
+            </ul>
+        </nav>
+        <footer>
+            <button><i class="bi bi-whatsapp"></i></button>
+        </footer>
+    </aside>
+    <main>
+        <h2 class="titulo-remeras">Todas las remeras</h2>
+        <div class="contenedor-carrito">
+            <p id="carrito-vacio" class="carrito-vacio disabled">Tu carrito esta vacio.</p>
+            <div id="carrito-productos" class="carrito-productos disabled">
+                <div class="carrito-producto">
+                    
+                </div>
+            </div>
+        </div>
+        <div id="carrito-acciones" class="carrito-acciones disabled">
+            
+            <div>
+                <div class="carrito-acciones-total">
+                    <p>Total:</p>
+                    <p id="total">$10000</p>
+                </div>
+                <button id="carrito-acciones-comprar" class="carrito-acciones-comprar">Comprar ahora</button>
+            </div>
+            <div>
+                <button id="carrito-acciones-vaciar" class="carrito-acciones-vaciar">Vaciar carrito</button>
+            </div>
+            <p id="carrito-comprado" class="carrito-comprado disabled">Muchas gracias por tu compra</p>
+        </div>
+
+    </main>
+</div>
+
+<script src="../js/main.js"></script>
+<script src="../js/carrito.js"></script>
+</body>
+</html>
