@@ -1,30 +1,12 @@
-const productos = [
-    {id: "Remera basica blanca" , 
-    nombre: "Remera basica blanca", 
-    precio: 10000, 
-    img: "./assets/remera-basica-blanca.jpg",
-    cantidad: 1},
-    {id: "Remera basica negra", 
-    nombre: "Remera basica negra", 
-    precio: 10000, 
-    img: "./assets/remera-basica-negra.png",
-    cantidad: 1},
-    {id:  "Remera basica gris", 
-    nombre: "Remera basica gris", 
-    precio: 12000, 
-    img: "./assets/remera-basica-gris.jpg",
-    cantidad: 1},
-    {id: "Remera basica azul", 
-    nombre: "Remera basica azul", 
-    precio: 14000, 
-    img: "./assets/remera-basica-azul.jpg",
-    cantidad: 1},
-    {id: "Remera basica roja", 
-    nombre: "Remera basica roja", 
-    precio: 13000, 
-    img: "./assets/remera-basica-roja.png",
-    cantidad: 1},
-];
+let productos = [];
+
+fetch("./js/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        cargarProductos(productos);
+    })
+    
 
 const contenedorProductos = document.querySelector("#contenedorProductos");
 let cardComprar;
@@ -61,6 +43,21 @@ function actualizarComprar() {
 carrito = JSON.parse(productosEnCarritoLS) || [];
 
 function agregarAlCarrito(e) {
+    Toastify({
+        text: "Agregaste al carrito",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, red, blueviolet )",
+          borderRadius: "1.5rem",
+          fontSize: "0,5rem"
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
     const idBoton = e.currentTarget.id;
     const productoCarrito = productos.find(producto => producto.id === idBoton);
     if (carrito.some(producto => producto.id === idBoton)) {
@@ -79,7 +76,7 @@ function actualizarCarrito() {
     numero.innerText = nuevoNumero;
 }
 
-cargarProductos();
+
 
 
 

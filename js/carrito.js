@@ -25,6 +25,7 @@ function cargarProductosCarrito() {
         productosEnCarrito.forEach(producto => {
             const div = document.createElement("div");
             div.classList.add("carrito-producto");
+            console.log(producto);
             div.innerHTML = `
             <img class="carrito-producto-img" src="${producto.img}" alt="${producto.nombre}">
                     <div class="carrito-producto-nombre">
@@ -69,6 +70,21 @@ function actualizarBotonEliminar() {
 
 
 function eliminarDelCarrito(e) {
+    Toastify({
+        text: "Eliminaste del carrito",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, red, blueviolet )",
+          borderRadius: "1.5rem",
+          fontSize: "0,5rem"
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
     const idBoton = e.currentTarget.id;
     const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
     
@@ -77,6 +93,7 @@ function eliminarDelCarrito(e) {
         
         const productoEliminado = document.getElementById(idBoton);
         productoEliminado.parentNode.removeChild(productoEliminado);
+        
         
         actualizarTotal();
         
